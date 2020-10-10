@@ -1,0 +1,34 @@
+{
+  "name": "docker_node",
+  "version": "1.0.0",
+  "description": "Simple node server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ikmokhirio/Web_development_docker.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Ikmokhirio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ikmokhirio/Web_development_docker/issues"
+  },
+  "homepage": "https://github.com/Ikmokhirio/Web_development_docker#readme",
+  "dependencies": {
+    "argon2": "^0.27.0",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "passport": "^0.4.1",
+    "passport-cookie": "^1.0.8",
+    "passport-local": "^1.0.0"
+  }
+}
