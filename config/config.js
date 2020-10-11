@@ -1,9 +1,16 @@
 module.exports = {
     settings: {
-        port : 3000,
-        cookieLifeTime : 14400
+        port: 3000,
+        cookieLifeTime: 14400
     },
     session: {
-        cookieSecret : "thisIsTheSecret"
+        cookieSecret: "thisIsTheSecret"
+    },
+    databaseSettings: {
+        databaseName: "users",
+        databaseLogin: "admin",
+        databasePassword: "1234",
+        databaseHost: "db",
+        databaseDialect: "postgres"
     }
 }
