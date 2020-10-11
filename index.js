@@ -6,6 +6,7 @@ const flash = require("connect-flash");
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
 
+const connectToDatabase = require('./database').connectToDatabase;
 const routes = require("./routes/routes")
 
 const settings = require('./config/config').settings;
@@ -36,6 +37,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(routes);
 
-app.listen(settings.port, ()=> {
+app.listen(settings.port, () => {
     console.log("SERVER STARTED AT %d PORT", settings.port);
+
+    connectToDatabase().then(() => {
+        console.log("CONNECTION PHASE ENDED");
+    }).catch(e => {
+        console.log("CONNECT TO DATABASE : ERROR " + e);
+    });
 });
