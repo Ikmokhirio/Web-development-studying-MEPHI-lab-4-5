@@ -1,8 +1,9 @@
 const {Sequelize} = require('sequelize');
+const settings = require('./config/config').databaseSettings;
 
-const sequelize = new Sequelize('users', 'admin', '1234', {
-    host: 'db',
-    dialect: 'postgres'
+const sequelize = new Sequelize(settings.databaseName, settings.databaseLogin, settings.databasePassword, {
+    host: settings.databaseHost,
+    dialect: settings.databaseDialect
 });
 
 async function connectToDatabase() {
