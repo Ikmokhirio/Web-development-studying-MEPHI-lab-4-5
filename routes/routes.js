@@ -14,6 +14,9 @@ const {
 
 router.use(logger.logRequestToConsole);
 
+router.get('/',function (req,res) {
+    res.render("index.hbs");
+});
 
 //==============Error handle and logging===========================
 
@@ -29,7 +32,10 @@ router.use(function (err, req, res, next) {
     }
 
 
-    res.status(err.statusCode).send("error.hbs");
+    res.status(err.statusCode).render("error.hbs", {
+        message: err.message,
+        error_name: err.name
+    });
     next(err);
 });
 
