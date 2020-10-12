@@ -53,7 +53,7 @@ router.post('/register', passport.authenticate('register', {
 
 router.get('/profile', passport.authenticate('cookie', {
     failureRedirect: '/login',
-    failureFlash: true
+    failureFlash: {message: "You should authorize to access this page"}
 }), function (req, res) {
     res.render('profile.hbs', {
         username: req.user.username,
@@ -65,7 +65,7 @@ router.get('/profile', passport.authenticate('cookie', {
 
 router.get('/settings', passport.authenticate('cookie', {
     failureRedirect: '/login',
-    failureFlash: true
+    failureFlash: {message: "You should authorize to access this page"}
 }), function (req, res) {
     res.render('settings.hbs');
 });
