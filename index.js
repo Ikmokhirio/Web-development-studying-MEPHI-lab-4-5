@@ -11,6 +11,7 @@ const routes = require("./routes/routes")
 
 const settings = require('./config/settings').settings;
 const cookieSecret = require('./config/settings').session.cookieSecret;
+const cookieName = require('./config/settings').session.cookieName;
 
 const app = express();
 
@@ -21,7 +22,7 @@ hbs.registerPartials("./views/partials/");
 app.use(express.static("public"));
 
 app.use(cookieSession({
-    name: 'session',
+    name: cookieName,
     keys: [cookieSecret],
     maxAge: settings.cookieLifeTime,
     secure: false,

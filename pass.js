@@ -2,6 +2,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const CookieStrategy = require('passport-cookie').Strategy
 const User = require('./database').User
+const cookieName = require('./config/settings').session.cookieName;
 const createNewUser = require('./database').createNewUser;
 const isUserExist = require('./database').isUserExist;
 const getUserPassword = require('./database').getUserPassword;
@@ -68,7 +69,7 @@ const registerStrategy = new LocalStrategy({
 );
 
 const cookieStrategy = new CookieStrategy({
-    cookieName: 'session',
+    cookieName: cookieName,
     passReqToCallback: true
 }, function (req, session, done) {
     if (!req.user) return done(null, false, {message: "You should authorize to access this page"});
@@ -79,6 +80,9 @@ const cookieStrategy = new CookieStrategy({
         } else {
             return done(null, false, {message: "You should authorize to access this page"});
         }
+    }).catch(e => {
+        console.log("Error : " + e);
+        return done(null, false, {message: "You should authorize to access this page"});
     });
 
 });
