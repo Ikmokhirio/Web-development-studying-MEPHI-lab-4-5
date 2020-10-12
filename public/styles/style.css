@@ -264,7 +264,7 @@ form {
     color: #6C91C2;
 }
 
-.logout a {
+.profile_buttons a {
     text-decoration: none;
     color: #C3C9E9;
     font-size: 32px;
@@ -277,7 +277,7 @@ form {
     transition: .7s ease-in-out;
 }
 
-.logout a:hover {
+.profile_buttons a:hover {
     background: #C3C9E9;
     color: #373F47;
 }
