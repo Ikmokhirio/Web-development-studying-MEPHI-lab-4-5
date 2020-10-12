@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const passport = require('../pass').passport;
+const updateData = require('../database').updateData;
 
 const logger = require('../logger');
 const {
@@ -48,6 +49,20 @@ router.get('/profile', passport.authenticate('cookie', {
         gender: req.user.gender,
         description: req.user.description
     })
+});
+
+router.get('/settings', passport.authenticate('cookie', {
+    failureRedirect: '/login',
+    failureFlash: true
+}), function (req, res) {
+    res.render('settings.hbs');
+});
+
+router.post('/settings', passport.authenticate('cookie', {
+    failureRedirect: '/login',
+    failureFlash: true
+}), updateData, function (req, res) {
+    res.render('settings.hbs');
 });
 
 router.get('/logout', function (req, res) {
