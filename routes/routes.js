@@ -52,6 +52,11 @@ router.get('/profile', passport.authenticate('cookie', {
     })
 });
 
+router.get('/logout',function(req, res) {
+   req.logout();
+   res.redirect('/');
+});
+
 //==============Error handle and logging===========================
 
 router.use(function (req, res, next) {
