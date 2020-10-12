@@ -40,8 +40,16 @@ router.post('/register', passport.authenticate('register', {
     failureFlash: true
 }));
 
-router.get('/profile', function (req, res) {
-    res.render("profile.hbs");
+router.get('/profile', passport.authenticate('cookie', {
+    failureRedirect: '/login',
+    failureFlash: true
+}), function (req, res) {
+    res.render('profile.hbs', {
+        username: req.user.username,
+        phone: req.user.phone_number,
+        gender: req.user.gender,
+        description: req.user.description
+    })
 });
 
 //==============Error handle and logging===========================
