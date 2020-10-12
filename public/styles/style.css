@@ -31,6 +31,7 @@ body {
 h3 {
     color: #eb4d4b;
     text-transform: uppercase;
+    text-align: center;
 }
 
 /* TOP MENU */
@@ -379,6 +380,7 @@ form {
     text-align: center;
     font-weight: 700;
     padding: 14px 20px;
+    margin: 0;
     text-transform: uppercase;
 
     transition: .7s ease-in-out;
@@ -389,7 +391,23 @@ form {
     color: #C3C9E9;
 }
 
-.error_message {
+.error_message h1 {
+    margin: 0;
+    color: #373F47;
+}
+
+.error_message p, .error_message h2 {
+    color: #eb4d4b;
+}
+
+.error_message #message {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 400px;
+    padding: 14px 20px;
+    justify-content: center;
+    align-items: center;
 
 }
 
