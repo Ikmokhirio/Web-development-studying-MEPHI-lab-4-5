@@ -18,6 +18,14 @@ router.get('/',function (req,res) {
     res.render("index.hbs");
 });
 
+router.get('/login',function(req,res) {
+    res.render("login.hbs");
+});
+
+router.get('/register',function(req,res) {
+    res.render("register.hbs");
+});
+
 //==============Error handle and logging===========================
 
 router.use(function (req, res, next) {
