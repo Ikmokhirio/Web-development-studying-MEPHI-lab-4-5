@@ -19,7 +19,6 @@ router.get('/', function (req, res) {
 });
 
 router.get('/login', function (req, res) {
-    console.log(req.flash());
     res.render("login.hbs");
 });
 
@@ -30,7 +29,6 @@ router.post('/login', passport.authenticate('login', {
 }));
 
 router.get('/register', function (req, res) {
-    console.log(req.flash());
     res.render("register.hbs");
 });
 
@@ -52,9 +50,9 @@ router.get('/profile', passport.authenticate('cookie', {
     })
 });
 
-router.get('/logout',function(req, res) {
-   req.logout();
-   res.redirect('/');
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
 });
 
 //==============Error handle and logging===========================
