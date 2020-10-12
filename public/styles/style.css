@@ -27,6 +27,12 @@ body {
     justify-content: center;
 }
 
+/* h3 reserved fo error messaged */
+h3 {
+    color: #eb4d4b;
+    text-transform: uppercase;
+}
+
 /* TOP MENU */
 
 #menu {
@@ -93,7 +99,7 @@ body {
     text-align: left;
 }
 
-.info p,h1,a {
+.info p, h1, a {
     margin-left: 40px;
 }
 
