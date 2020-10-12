@@ -14,11 +14,10 @@ async function createNewUser(username, password, phone, gender, desc) {
 
     const hashedPassword = await argon.hash(password);
 
-    let newUser = undefined;
+    let res = await argon.verify(hashedPassword, password);
 
-    argon.verify(hashedPassword, password).then(() => {
-
-        newUser = User.build({
+    if (res) {
+        let newUser = User.build({
             username: username,
             password: hashedPassword,
             phone_number: phone,
@@ -26,15 +25,16 @@ async function createNewUser(username, password, phone, gender, desc) {
             description: desc
         });
 
+
         newUser.save().then(() => {
             console.log("New user added");
         });
-    }).catch((err) => {
-        console.err(err + ' Invalid password supplied!');
-        newUser = undefined;
-    });
 
-    return newUser;
+        return newUser;
+    }
+
+    return undefined;
+
 
 }
 
