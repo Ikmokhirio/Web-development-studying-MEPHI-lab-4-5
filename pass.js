@@ -55,7 +55,7 @@ const registerStrategy = new LocalStrategy({
             if (res) {
                 return done(null, false, {message: "User already exist"});
             } else {
-                createNewUser(username, password, req.body.phone_number, req.body.gender, req.body.description).then(function (newUser) {
+                createNewUser(username, password, req.body.phone_number, req.body.gender, req.body.description).then(newUser => {
                     return done(null, newUser);
                 }).catch(e => {
                     return done(null, false, {message: "Error : " + e});
@@ -71,13 +71,13 @@ const cookieStrategy = new CookieStrategy({
     cookieName: 'session',
     passReqToCallback: true
 }, function (req, session, done) {
-    if (!req.user) return done(null, false, {message: "You should authorize"});
+    if (!req.user) return done(null, false, {message: "You should authorize to access this page"});
 
     findUser(req.user.username).then(user => {
         if (user !== undefined && user !== null) {
             return done(null, user);
         } else {
-            return done(null, false);
+            return done(null, false, {message: "You should authorize to access this page"});
         }
     });
 
