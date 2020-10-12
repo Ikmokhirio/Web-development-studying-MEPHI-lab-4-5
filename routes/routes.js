@@ -20,7 +20,13 @@ router.get('/', function (req, res) {
 });
 
 router.get('/login', function (req, res) {
-    res.render("login.hbs");
+
+    let message = req.flash();
+
+    res.render("login.hbs", {
+        message: message.error
+    });
+
 });
 
 router.post('/login', passport.authenticate('login', {
@@ -30,7 +36,13 @@ router.post('/login', passport.authenticate('login', {
 }));
 
 router.get('/register', function (req, res) {
-    res.render("register.hbs");
+
+    let message = req.flash();
+
+    res.render("register.hbs", {
+        message: message.error
+    });
+
 });
 
 router.post('/register', passport.authenticate('register', {
