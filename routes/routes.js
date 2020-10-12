@@ -12,29 +12,35 @@ const {
 } = require("../httpError");
 
 
-
 router.use(logger.logRequestToConsole);
 
-router.get('/',function (req,res) {
+router.get('/', function (req, res) {
     res.render("index.hbs");
 });
 
-router.get('/login',function(req,res) {
+router.get('/login', function (req, res) {
     console.log(req.flash());
     res.render("login.hbs");
 });
 
-router.post('/login',passport.authenticate('login', {
+router.post('/login', passport.authenticate('login', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
 }));
 
-router.get('/register',function(req,res) {
+router.get('/register', function (req, res) {
+    console.log(req.flash());
     res.render("register.hbs");
 });
 
-router.get('/profile',function(req,res) {
+router.post('/register', passport.authenticate('register', {
+    successRedirect: '/',
+    failureRedirect: '/register',
+    failureFlash: true
+}));
+
+router.get('/profile', function (req, res) {
     res.render("profile.hbs");
 });
 
