@@ -40,3 +40,4 @@ async function createNewUser(username, password, phone, gender, desc) {
 
 exports.User = User;
 exports.sequelize = sequelize;
+exports.createNewUser = createNewUser;
