@@ -27,6 +27,14 @@ async function findUser(username) {
     });
 }
 
+async function findUserById(id) {
+    return await userModel.findOne({
+        where: {
+            id: id
+        }
+    });
+}
+
 async function isUserExist(username) {
     let user = await findUser(username);
     return (user !== undefined && user !== null);
@@ -71,3 +79,4 @@ exports.getUserPassword = getUserPassword;
 exports.isUserExist = isUserExist;
 exports.User = userModel;
 exports.createNewUser = createNewUser;
+exports.findUserById = findUserById;
