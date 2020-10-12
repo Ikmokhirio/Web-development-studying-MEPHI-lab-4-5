@@ -87,6 +87,11 @@ body {
 
 /* LOGIN FORM */
 
+form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .login {
     width: 400px;
     padding: 40px;
