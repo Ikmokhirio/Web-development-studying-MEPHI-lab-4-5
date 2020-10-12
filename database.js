@@ -30,7 +30,15 @@ async function isUserExist(username) {
     return (user !== undefined && user !== null);
 }
 
+async function getUserPassword(username) {
+    let user = await findUser(username);
+    console.log("Password : " + user.password);
+    return user.password;
+}
+
 
 exports.connectToDatabase = connectToDatabase;
 exports.sequelize = sequelize;
+exports.findUser = findUser;
+exports.getUserPassword = getUserPassword;
 exports.isUserExist = isUserExist;
