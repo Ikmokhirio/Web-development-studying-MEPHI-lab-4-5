@@ -5,6 +5,7 @@ const User = require('./database').User
 const createNewUser = require('./database').createNewUser;
 const isUserExist = require('./database').isUserExist;
 const getUserPassword = require('./database').getUserPassword;
+const findUserById = require('./database').findUserById;
 const findUser = require('./database').findUser
 const argon = require('argon2');
 
@@ -83,12 +84,12 @@ const cookieStrategy = new CookieStrategy({
 });
 
 passport.serializeUser(function (user, done) {
-    done(null, user.username);
+    done(null, user.id);
 });
 
-passport.deserializeUser(function (username, done) {
+passport.deserializeUser(function (id, done) {
 
-    findUser(username).then(user => {
+    findUserById(id).then(user => {
         done(null, user);
     });
 
