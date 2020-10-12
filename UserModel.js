@@ -4,10 +4,13 @@ const argon = require('argon2');
 
 const User = sequelize.define('User', {
     username: {type: Sequelize.STRING, allowNull: false, unique: true},
-    password: {type: Sequelize.STRING, allowNull: false}
+    password: {type: Sequelize.STRING, allowNull: false},
+    phone_number: {type: Sequelize.STRING, allowNull: false},
+    gender: {type: Sequelize.STRING, allowNull: false},
+    description: {type: Sequelize.STRING, allowNull: false}
 });
 
-async function createNewUser(username, password) {
+async function createNewUser(username, password, phone, gender, desc) {
 
     const hashedPassword = await argon.hash(password);
 
@@ -17,7 +20,10 @@ async function createNewUser(username, password) {
 
         newUser = User.build({
             username: username,
-            password: hashedPassword
+            password: hashedPassword,
+            phone_number: phone,
+            gender: gender,
+            description: desc
         });
 
         newUser.save().then(() => {
