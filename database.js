@@ -69,7 +69,35 @@ async function createNewUser(username, password, phone, gender, desc) {
 
     return undefined;
 
+}
 
+async function updateData(req, res, next) {
+
+    let user = await findUserById(req.user.id);
+
+    const body = req.body;
+    if (body) {
+        console.log(body);
+        if (body.password) {
+            console.log("Changing password");
+            user.password = body.password;
+        }
+        if (body.phone_number) {
+            console.log("Changing phone");
+            user.phone_number = body.phone_number;
+        }
+        if (body.gender) {
+            user.gender = body.gender;
+        }
+        if (body.description) {
+            user.description = body.description;
+        }
+
+        await user.save();
+    }
+
+
+    next();
 }
 
 exports.connectToDatabase = connectToDatabase;
@@ -80,3 +108,4 @@ exports.isUserExist = isUserExist;
 exports.User = userModel;
 exports.createNewUser = createNewUser;
 exports.findUserById = findUserById;
+exports.updateData = updateData;
