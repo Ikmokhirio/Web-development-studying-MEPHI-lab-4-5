@@ -26,6 +26,10 @@ router.get('/register',function(req,res) {
     res.render("register.hbs");
 });
 
+router.get('/profile',function(req,res) {
+    res.render("profile.hbs");
+});
+
 //==============Error handle and logging===========================
 
 router.use(function (req, res, next) {
