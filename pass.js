@@ -1,8 +1,8 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const CookieStrategy = require('passport-cookie').Strategy
-const User = require('./UserModel').User
-const createNewUser = require('./UserModel').createNewUser;
+const User = require('./database').User
+const createNewUser = require('./database').createNewUser;
 const isUserExist = require('./database').isUserExist;
 const getUserPassword = require('./database').getUserPassword;
 const findUser = require('./database').findUser
@@ -21,7 +21,6 @@ const loginStrategy = new LocalStrategy({
                 getUserPassword(username).then(hash => {
 
                     argon.verify(hash, password).then((result) => {
-                        console.log(typeof result);
                         if (result) {
                             return done(null, user);
                         }
