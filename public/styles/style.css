@@ -68,22 +68,54 @@ body {
     min-height: 85vh;
 }
 
-.Hello {
+/* WELCOME */
+
+.welcome {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 
     background-color: #373F47;
+
     width: 80vw;
+
+    padding: 25px;
+}
+
+.welcome img {
+    width: 50%;
+}
+
+.info {
+    width: 50%;
+    color: #C3C9E9;
+    text-align: left;
+}
+
+.info p,h1,a {
+    margin-left: 40px;
+}
+
+.info a {
+    text-decoration: none;
+    color: #373F47;
+    background-color: #C3C9E9;
+    font-size: 32px;
+    padding: 7px;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: .7s ease-in-out;
+}
+
+.info a:hover {
+    background: #373F47;
     color: #C3C9E9;
 
 }
 
-.Hello img {
-    width: 50%;
-    padding-bottom: 100px;
-}
+/* WELCOME END */
 
 /* LOGIN FORM */
 
