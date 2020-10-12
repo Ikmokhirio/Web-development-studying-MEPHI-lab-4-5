@@ -67,6 +67,22 @@ const registerStrategy = new LocalStrategy({
     }
 );
 
+const cookieStrategy = new CookieStrategy({
+    cookieName: 'session',
+    passReqToCallback: true
+}, function (req, session, done) {
+    if (!req.user) return done(null, false, {message: "You should authorize"});
+
+    findUser(req.user.username).then(user => {
+        if (user !== undefined && user !== null) {
+            return done(null, user);
+        } else {
+            return done(null, false);
+        }
+    });
+
+});
+
 passport.serializeUser(function (user, done) {
     done(null, user.username);
 });
@@ -81,6 +97,7 @@ passport.deserializeUser(function (username, done) {
 
 passport.use('login', loginStrategy);
 passport.use('register', registerStrategy);
+passport.use('cookie', cookieStrategy);
 
 
 exports.passport = passport;
