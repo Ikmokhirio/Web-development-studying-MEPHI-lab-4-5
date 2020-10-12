@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const passport = require('../pass').passport;
 
 const logger = require('../logger');
 const {
@@ -19,8 +20,15 @@ router.get('/',function (req,res) {
 });
 
 router.get('/login',function(req,res) {
+    console.log(req.flash());
     res.render("login.hbs");
 });
+
+router.post('/login',passport.authenticate('login', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+}));
 
 router.get('/register',function(req,res) {
     res.render("register.hbs");
