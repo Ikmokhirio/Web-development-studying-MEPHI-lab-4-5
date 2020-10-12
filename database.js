@@ -60,11 +60,8 @@ async function createNewUser(username, password, phone, gender, desc) {
         });
 
 
-        newUser.save().then(() => {
-            console.log("New user added");
-        });
+        return await newUser.save();
 
-        return newUser;
     }
 
     return undefined;
