@@ -9,8 +9,8 @@ const cookieParser = require('cookie-parser');
 const connectToDatabase = require('./database').connectToDatabase;
 const routes = require("./routes/routes")
 
-const settings = require('./config/config').settings;
-const cookieSecret = require('./config/config').session.cookieSecret;
+const settings = require('./config/settings').settings;
+const cookieSecret = require('./config/settings').session.cookieSecret;
 
 const app = express();
 
