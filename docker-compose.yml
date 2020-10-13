@@ -7,16 +7,25 @@ services:
     command: npm run start.dev
     depends_on:
       - database
+    networks:
+      dev:
+        aliases:
+          - app.dev
     ports:
       - 3000:3000
     volumes:
       - ./:/home/nodeApp
-    links:
-      - "database:db"
   database:
     image: postgres
+    networks:
+      dev:
+        aliases:
+          - db.dev
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_DB=users
       - POSTGRES_PASSWORD=1234
-
+networks:
+  dev:
+    external:
+      name: dev
