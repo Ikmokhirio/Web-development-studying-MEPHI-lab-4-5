@@ -35,6 +35,18 @@ async function findUserById(id) {
     });
 }
 
+async function deleteUserById(id) {
+    return await userModel.destroy({
+        where: {
+            id: id
+        }
+    });
+}
+
+async function findAllUsers() {
+    return await userModel.findAll();
+}
+
 async function isUserExist(username) {
     let user = await findUser(username);
     return (user !== undefined && user !== null);
@@ -45,7 +57,7 @@ async function getUserPassword(username) {
     return user.password;
 }
 
-async function createNewUser(username, password, phone, gender, desc) {
+async function createNewUser(username, password, phone, gender, desc, role = "User") {
     const hashedPassword = await argon.hash(password);
 
     let res = await argon.verify(hashedPassword, password);
@@ -56,7 +68,8 @@ async function createNewUser(username, password, phone, gender, desc) {
             password: hashedPassword,
             phone_number: phone,
             gender: gender,
-            description: desc
+            description: desc,
+            role: role
         });
 
 
@@ -106,3 +119,5 @@ exports.User = userModel;
 exports.createNewUser = createNewUser;
 exports.findUserById = findUserById;
 exports.updateData = updateData;
+exports.findAllUsers = findAllUsers;
+exports.deleteUserById = deleteUserById;
